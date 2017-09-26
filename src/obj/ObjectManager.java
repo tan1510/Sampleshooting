@@ -3,6 +3,7 @@ package obj;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import densan.s.game.calc.Calc;
 import densan.s.game.drawing.Drawer;
 import densan.s.game.manager.GameManager;
 import densan.s.game.object.GameObjectBase;
@@ -39,7 +40,7 @@ public class ObjectManager<T extends GameObjectBase> {
 			o = itr.next();
 			o.update();
 		}
-		
+		collisionPlayer();
 		removeProccess();
 		joinList();
 	}
@@ -54,7 +55,27 @@ public class ObjectManager<T extends GameObjectBase> {
 			if(o.isRemove())
 				itr.remove();
 		}
-		
+	}
+	
+	/**
+	 * プレイヤーの当たり判定
+	 */
+	private void collisionPlayer(){
+		Iterator<T> itr1 = objects.iterator();
+		T o1;
+		while(itr1.hasNext()) {
+			o1 = itr1.next();
+			if(o1 instanceof Player){
+				Iterator<T> itr2 = objects.iterator();
+				T o2;
+				o2 = itr1.next();
+				if(o2 instanceof Enemy){
+					if(Calc.collisionCircleDetection(o1, o2))
+					((Player) o1).damage();
+					
+				}
+			}
+		}
 	}
 /**
  * リストにゲームオブジェクトを登録する待機状態にする
@@ -72,7 +93,7 @@ public class ObjectManager<T extends GameObjectBase> {
 	}
 	
 	/**
-	 * 
+	 * 追加されるのを待機しているオブジェクトをobjectsに追加しaddtionalObjectsリストを空にする
 	 */
 	private void joinList() {
 		objects.addAll(additionalObjects);

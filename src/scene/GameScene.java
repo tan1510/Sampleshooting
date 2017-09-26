@@ -1,9 +1,9 @@
 package scene;
 import java.awt.Color;
 
-
 import densan.s.game.drawing.Drawer;
 import densan.s.game.manager.Updatable;
+import obj.Enemy;
 import obj.ObjectManager;
 import obj.Player;
  
@@ -16,6 +16,7 @@ public class GameScene implements Updatable{
 			
 	public GameScene() {
 		om.registerObject(new Player());
+		om.registerObject(new Enemy(100));
 	}
  
 	@Override

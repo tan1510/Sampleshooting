@@ -55,6 +55,12 @@ public class Player extends GameObjectBase {
 			restTime--;
 	}
 	
+	
+	public void damage(){
+	//未実装
+		System.out.println("damaged");
+	}
+	
 	@Override
 	public void draw(Drawer d) {
 		d.setColor(Color.BLUE);
