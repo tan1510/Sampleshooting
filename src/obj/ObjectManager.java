@@ -72,7 +72,6 @@ public class ObjectManager<T extends GameObjectBase> {
 				if(o2 instanceof Enemy){
 					if(Calc.collisionCircleDetection(o1, o2))
 					((Player) o1).damage();
-					
 				}
 			}
 		}

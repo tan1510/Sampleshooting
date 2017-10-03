@@ -9,11 +9,19 @@ import obj.ballet.PlayerBallet;
  
  
 public class Player extends GameObjectBase {
- 
+	/**
+	 * 
+	 */
 	public static final int SPEED = 2;
-	
+	/**
+	 * 
+	 */
 	private static final int SHOOT_WAIT_FRAME = 10;
 	
+	/**
+	 * 
+	 */
+	private static final int INVINSIBLE =40;
 	private ObjectManager om;
 	
 	public Player() {
@@ -25,6 +33,8 @@ public class Player extends GameObjectBase {
 	public void update() {
 		movement();
 		shoot();
+		if(damageCount>0)
+			damageCount--;
 	}
 	
 	/**
@@ -54,11 +64,19 @@ public class Player extends GameObjectBase {
 		if(restTime>0)
 			restTime--;
 	}
-	
-	
+	/**
+	 * ダメージ食らった時のカウント
+	 */
+	private int damageCount = 0;
+	/**
+	 *被弾
+	 */
 	public void damage(){
+		if(damageCount==0){
 	//未実装
 		System.out.println("damaged");
+		damageCount=INVINSIBLE;
+		}
 	}
 	
 	@Override
